@@ -10,8 +10,8 @@ const Header = ({ theme, toggleTheme }) => {
                     <Scale size={24} strokeWidth={2.5} />
                 </div>
                 <div>
-                    <h1 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 tracking-tight leading-none">RevitLegis</h1>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide uppercase mt-0.5">Assistente Legislativo Inteligente</p>
+                    <h1 className="text-xl sm:text-2xl font-bold text-indigo-600 dark:text-indigo-400 tracking-tight leading-none">RevitLegis</h1>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide uppercase mt-0.5 hidden xs:block">Assistente Legislativo Inteligente</p>
                 </div>
             </div>
             <div className="flex items-center gap-4">

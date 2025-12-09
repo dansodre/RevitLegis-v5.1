@@ -369,7 +369,7 @@ ${textToRevise}
       
       <Header theme={theme} toggleTheme={toggleTheme} />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 md:py-8 space-y-6 md:space-y-8">
         
         <ConfigPanel 
             aiProvider={aiProvider}
@@ -394,7 +394,7 @@ ${textToRevise}
           <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-slate-100 dark:divide-slate-800">
             
             {/* Coluna de Entrada */}
-            <div className="p-6 md:p-8 space-y-6">
+            <div className="p-4 md:p-6 lg:p-8 space-y-4 md:space-y-6">
               <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
                      <span className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-sm">1</span>
@@ -411,7 +411,7 @@ ${textToRevise}
                 <textarea
                   id="originalText" value={originalText} onChange={handleTextChange}
                   placeholder="Cole aqui o texto legislativo, administrativo ou discurso para revisão..."
-                  className="w-full h-[500px] p-6 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-700 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-y leading-relaxed shadow-inner"
+                  className="w-full h-[300px] lg:h-[500px] p-4 md:p-6 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-700 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all resize-y leading-relaxed shadow-inner"
                   style={{ fontSize: `${fontSize}rem` }}
                   spellCheck="false"
                 />

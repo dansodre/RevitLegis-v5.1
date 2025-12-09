@@ -17,7 +17,7 @@ const DiffViewer = ({
   fontSize
 }) => {
   return (
-    <div className="p-6 md:p-8 bg-slate-50/30 dark:bg-slate-800/20">
+    <div className="p-4 md:p-6 lg:p-8 bg-slate-50/30 dark:bg-slate-800/20">
       <div className="h-full flex flex-col space-y-6">
         <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
@@ -53,7 +53,7 @@ const DiffViewer = ({
               </div>
         </div>
 
-        <div className="relative flex-grow min-h-[500px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden flex flex-col">
+        <div className="relative flex-grow min-h-[300px] lg:min-h-[500px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden flex flex-col">
             {(isLoading || showComparison) ? (
                 <>
                     <div className="absolute top-0 left-0 right-0 h-1 bg-slate-100 dark:bg-slate-800">

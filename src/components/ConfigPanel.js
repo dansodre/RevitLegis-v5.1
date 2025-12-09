@@ -29,13 +29,13 @@ const ConfigPanel = ({
         <div className="flex p-1 bg-slate-200/60 dark:bg-slate-700/60 rounded-lg self-start md:self-auto">
             <button 
                 onClick={() => changeProvider('gemini')}
-                className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ${aiProvider === 'gemini' ? 'bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-600/50'}`}
+                className={`px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all duration-200 ${aiProvider === 'gemini' ? 'bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-600/50'}`}
             >
                 Google Gemini
             </button>
             <button 
                 onClick={() => changeProvider('openai')}
-                className={`px-4 py-1.5 text-sm font-medium rounded-md transition-all duration-200 ${aiProvider === 'openai' ? 'bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-600/50'}`}
+                className={`px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all duration-200 ${aiProvider === 'openai' ? 'bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 shadow-sm' : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-600/50'}`}
             >
                 OpenAI
             </button>

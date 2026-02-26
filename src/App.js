@@ -169,43 +169,52 @@ const App = () => {
   };
 
   const generatePromptForRevision = useCallback((textToRevise) => {
-    let styleGuidance = "Mantenha a formalidade típica de textos legislativos e administrativos.";
+    let instructions = "";
+
     if (isTranscription) {
-      styleGuidance = "PRESERVE AO MÁXIMO a originalidade da fala, pois este texto é uma transcrição de discurso. Mantenha hesitações comuns (como 'ééé', 'ããã'), marcadores conversacionais (como 'né?', 'tá?', 'então') e o léxico do orador, corrigindo apenas erros gramaticais e ortográficos claros que comprometam a compreensão formal e a norma culta. Não suavize a linguagem falada para uma escrita excessivamente formal, a menos que seja um erro gramatical claro.";
+      instructions = `
+   1. **PRESERVAÇÃO ESTRITA DA ORALIDADE (CRÍTICO - NÃO ALTERAR ESTILO):**
+      * Este texto é uma transcrição fiel de fala de um parlamentar. Sua prioridade absoluta é **MANTER A VOZ, O TOM, O LÉXICO E O ESTILO DO ORADOR**.
+      * **PROIBIDO:** Não formalize o texto, não reescreva frases para ficarem "mais bonitas", não substitua vocabulário simples por culto, não remova repetições retóricas ou de ênfase.
+      * **MANTENHA:** Marcas de oralidade e conversacionais (ex: "né?", "tá?", "então...", "aí...", "veja bem...", "escute aqui").
+      * **MANTENHA:** Hesitações características da fala (ex: "ééé...", "hã...").
+      * **SENTIDO E COERÊNCIA:** A revisão gramatical NÃO pode, em hipótese alguma, alterar o sentido original, a lógica argumentativa ou a ordem dos fatos apresentados pelo orador.
+
+   2. **CORREÇÕES PERMITIDAS (APENAS GRAMÁTICA):**
+      * **Pontuação:** Ajuste vírgulas, pontos e interrogações para refletir o ritmo da fala e a entonação correta, garantindo a legibilidade sem matar a espontaneidade.
+      * **Ortografia e Acentuação:** Corrija todos os erros de escrita e acentuação (Novo Acordo Ortográfico).
+      * **Concordância e Regência:** Corrija erros gramaticais explícitos (ex: "nós vai" -> "nós vamos"; "para mim fazer" -> "para eu fazer"; "haviam pessoas" -> "havia pessoas"), mas SEM alterar a estrutura da frase se não for estritamente necessário.
+      * **Maiúsculas/Minúsculas:** Ajuste nomes próprios e inícios de frase.
+
+   3. **FORMATAÇÃO:**
+      * Preserve EXATAMENTE a estrutura de parágrafos e as quebras de linha originais. Não una nem separe parágrafos.`;
+    } else {
+      instructions = `
+   1. **Revisão Gramatical e Ortográfica Rigorosa (Norma Culta Legislativa):**
+      * Corrija todos os erros de ortografia, pontuação e acentuação.
+      * Ajuste concordância verbal/nominal e regência conforme a norma culta.
+      * Corrija colocação pronominal (ênclise/próclise/mesóclise) adequada ao tom formal.
+
+   2. **Revisão de Estilo (Foco em Clareza e Formalidade Legislativa):**
+      * Melhore a fluidez, coesão e coerência do texto.
+      * Mantenha a formalidade típica de textos legislativos e administrativos.
+      * Substitua palavras ou expressões coloquiais inadequadas por termos formais equivalentes.
+      * Evite repetições viciosas, mas mantenha o significado original inalterado.
+      * Torne o texto mais preciso e objetivo.
+
+   3. **FORMATAÇÃO:**
+      * Preserve a estrutura de parágrafos e as quebras de linha originais com a maior fidelidade possível.`;
     }
 
     return `
-Você é um revisor de textos altamente competente e meticuloso, especialista em língua portuguesa do Brasil, com foco em documentos legislativos e textos para câmaras municipais, prefeituras, e assembleias legislativas.
-Sua tarefa é revisar o seguinte texto de forma exaustiva, atentando a todos os detalhes.
+Você é um revisor de textos especialista em documentos legislativos e transcrições parlamentares brasileiras.
+Sua tarefa é revisar o texto abaixo seguindo ESTRITAMENTE estas diretrizes:
 
-**Critérios de Revisão Mandatórios:**
+${instructions}
 
-1.  **Revisão Gramatical e Ortográfica Rigorosa e Completa (Norma Culta Legislativa):**
-    * Corrija todos os erros de ortografia (incluindo o Novo Acordo Ortográfico), pontuação (vírgulas, pontos, crases, etc.) e acentuação.
-    * Ajuste a concordância verbal e nominal para garantir a correção absoluta.
-    * Verifique e corrija minuciosamente a regência verbal e nominal, conforme o uso formal em textos legais.
-    * Corrija a colocação pronominal (próclise, mesóclise, ênclise) conforme a norma culta e o estilo formal de documentos legislativos.
-    * Aplique estritamente a norma culta da língua portuguesa em todos os aspetos, com atenção ao vocabulário e jargão técnico-jurídico, se presente e adequado.
+**IMPORTANTE:** Retorne APENAS o texto revisado final. Não inclua comentários, introduções ou notas.
 
-2.  **Revisão de Estilo (Foco em Clareza, Precisão e Formalidade Legislativa – MÍNIMA intervenção no conteúdo):**
-    * Melhore a fluidez do texto SEM ALTERAR o conteúdo, o significado original ou a intenção do autor.
-    * Torne o texto mais claro, preciso, coeso e coerente através de ajustes sutis.
-    * ${styleGuidance}
-    * Evite alterar a estrutura das frases drasticamente, a menos que seja absolutamente essencial para a clareza ou correção gramatical.
-    * Não adicione novas informações nem remova informações existentes. Apenas corrija e refine o que foi fornecido.
-    * Se houver trechos ambíguos, tente torná-los mais precisos sem alterar o significado, mantendo a objetividade.
-    * Substitua palavras ou expressões coloquiais inadequadas por termos formais equivalentes, exceto se for uma transcrição de discurso e a coloquialidade for característica da fala (nesse caso, manter, a menos que seja um erro gramatical).
-
-3.  **Manutenção da Formatação Estrutural Original (Parágrafos e Quebras de Linha):**
-    * **CRÍTICO:** Preserve a estrutura de parágrafos e as quebras de linha (caracteres '\\n') do texto original com a maior fidelidade possível.
-    * **NÃO ALTERE** a divisão de parágrafos (não junte parágrafos que estavam separados, nem separe parágrafos que estavam juntos), a menos que seja uma correção gramatical absolutamente óbvia e inquestionável (ex: um diálogo mal formatado que precise de novas linhas para cada fala) ou se a ausência de uma quebra de parágrafo crie uma ambiguidade gramatical severa.
-    * **MANTENHA** as quebras de linha intencionais dentro dos parágrafos (quebras de linha simples), a menos que prejudiquem claramente a leitura ou criem erros gramaticais.
-    * O objetivo é que o texto revisado mantenha uma estrutura de parágrafos e linhas visualmente IDÊNTICA ou O MAIS PRÓXIMA POSSÍVEL à do original, alterando apenas o conteúdo textual para correções e melhorias de estilo mínimas. Evite reformatar blocos de texto.
-
-**Formato da Resposta:**
-Retorne APENAS o texto revisado. Não inclua NENHUM comentário, introdução, observação, cabeçalho ou rodapé antes ou depois do texto revisado.
-
-**Texto Original para Revisão:**
+**TEXTO ORIGINAL PARA REVISÃO:**
 ---
 ${textToRevise}
 ---
